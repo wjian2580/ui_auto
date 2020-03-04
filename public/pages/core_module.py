@@ -41,7 +41,7 @@ class Report():
     
     # report_name = (By.ID, "19-09-11")
     # report_detail = (By.ID, '答题情况')
-    report_name = (By.XPATH, '//android.view.View[@content-desc="19-09-11"]')
+    report_name = (By.XPATH, '// android.webkit.WebView[@content-desc="学习报告列表"]/android.view.View[11]')
     report_detail = (By.XPATH, '//android.view.View[@content-desc="答题情况"]')
 
 
