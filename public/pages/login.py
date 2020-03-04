@@ -8,3 +8,4 @@ class Login():
     password_loc = (By.ID, "cn.xdf.woxue.student:id/pwd")
     login_btn_loc = (By.ID, "cn.xdf.woxue.student:id/loginBtnBg")
     privacy_sure = (By.ID, "cn.xdf.woxue.student:id/tv_sure")
+

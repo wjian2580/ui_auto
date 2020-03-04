@@ -5,7 +5,7 @@ from appium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
-from public.pages import login
+from public.pages import home,login,my_tab
 from appium.webdriver.common.touch_action import TouchAction
 
 
@@ -54,6 +54,17 @@ class Action():
 		self.click(*login_page.login_btn_loc)
 		self.click_by_text('跳过')
 		self.click_by_text('知道了')
+
+
+	def logout(self):
+		my_tabs = my_tab.MyTab()
+		self.click_by_text('我的')
+		self.click_by_partial_text('知道了')
+		self.click(*my_tabs.setting_btn)
+		self.attach_screenshot('设置页面')
+		self.click(*my_tabs.logout_btn)
+		self.click(*my_tabs.logout_confirm)
+		self.attach_screenshot('成功退出登录')
 
 
 	def find_element(self, *loc):

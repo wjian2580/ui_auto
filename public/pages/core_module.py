@@ -49,5 +49,5 @@ class ErrorBook():
 
     # book_name = (By.ID, "The rat doesn't love picnics.")
     # audio_item = (By.ID, 'audioPlayer0')
-    book_name = (By.XPATH, "//android.view.View[@content-desc=%s]" % ("The rat doesn't love picnics."))
-    audio_item = (By.XPATH, '//android.view.View[@content-desc="audioPlayer0"]')
+    book_name = (By.XPATH, "//android.view.View[@content-desc='They are having a picnic.']")
+    audio_item = (By.XPATH, '//android.view.View[@content-desc="A"]')

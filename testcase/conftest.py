@@ -41,7 +41,7 @@ def start_business_hall(action):
         action.attach_screenshot('我的tab')
     with allure.step('新手引导-点击知道了'):
         action.attach_screenshot('新手引导')
-        action.click_by_text('知道了')
+        action.click_by_partial_text('知道了')
     with allure.step('点击营业厅icon进入营业厅'):
         # action.click(business_hall_page.entrance_loc)
         action.click_by_text('营业厅')
@@ -70,7 +70,6 @@ def test_log(request, action):
         allure.attach(c, 'appLog', allure.attachment_type.TEXT)
     request.addfinalizer(attach_log)
     
-
 
 
 def pytest_sessionstart(session):
