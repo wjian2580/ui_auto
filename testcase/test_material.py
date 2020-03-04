@@ -8,7 +8,6 @@ from selenium.webdriver.common.by import By
 class TestMaterial():
 
     entrance = core_module.CoreModuleEntrance()
-    tabs = home.Tabs()
     material_locs = core_module.Material()
 
     @allure.story('查看资料')

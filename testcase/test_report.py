@@ -11,7 +11,7 @@ class TestReport():
     report_locs = core_module.Report()
 
     @allure.story('查看学习报告')
-    def test_manual_practice(self, action):
+    def test_report(self, action):
         with allure.step('进入报告列表'):
             action.click(*self.entrance.report)
             action.attach_screenshot('报告列表')

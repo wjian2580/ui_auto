@@ -11,7 +11,7 @@ class TestErrorBook():
     error_book_locs = core_module.ErrorBook()
 
     @allure.story('查看错题本')
-    def test_manual_practice(self, action):
+    def test_error_book(self, action):
         with allure.step('进入错题列表'):
             action.click(*self.entrance.error_book)
             action.attach_screenshot('错题列表')
