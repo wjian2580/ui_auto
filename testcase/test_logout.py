@@ -1,3 +1,5 @@
+import allure
+
 @allure.feature('退出登录')
 class TestLogout():
 
