@@ -12,6 +12,7 @@ class TestBindAndUnbind():
     @allure.story('绑定学员')
     def test_bind_student(self, action):
         with allure.step('进入学员管理'):
+            action.click_by_text('我的')
             action.click_by_partial_text('知道了')
             action.click(*self.student_locs.entrance)
             action.attach_screenshot('学员列表')
@@ -26,10 +27,13 @@ class TestBindAndUnbind():
     @allure.story('解绑学员')
     def test_unbind_student(self, action):
         with allure.step('进入学员管理'):
+            action.click_by_text('我的')
             action.click_by_partial_text('知道了')
             action.click(*self.student_locs.entrance)
             action.attach_screenshot('学员列表')
         with allure.step('解绑'):
+            action.click(*self.student_locs.student_loc)
+            action.attach_screenshot('学员信息')
             action.click(*self.student_locs.unbind_btn)
             action.click(*self.student_locs.unbind_confirm_btn)
             action.attach_screenshot('解绑成功')
