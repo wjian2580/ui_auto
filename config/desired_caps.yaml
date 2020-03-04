@@ -1,0 +1,15 @@
+platformName: Android
+platformVersion: 9
+#udid: 750BBKL22GDN
+deviceName: vivo x27
+
+#appname: .apk
+
+appPackage: cn.xdf.woxue.student
+appActivity: .activity.SplashActivity
+ip: localhost
+port: 4723
+
+noReset: False
+unicodeKeyboard: True
+resetKeyboard: True
