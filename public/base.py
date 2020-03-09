@@ -42,6 +42,19 @@ class Action():
 			"newCommandTimeout": 3000,
 			"autoGrantPermissions": True
 		}
+		desired_caps = {
+			"platformVersion": "11.2.6",
+			"deviceName": "iPhone",
+			"platformName": "iOS",
+			"udid": "手机udid",
+			"bundleId": "APP bundleid",
+			"automationName": "XCUITest",
+			"xcodeSigningId": "iPhone Developer",
+			"xcodeOrgId": "10位校验码",
+			"showIOSLog": "true",
+			"preventWDAAttachments": "false"
+                        
+		}
 		self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 		self.driver.implicitly_wait(30)
 
