@@ -42,36 +42,37 @@ class Action():
 			"newCommandTimeout": 3000,
 			"autoGrantPermissions": True
 		}
-		desired_caps = {
-			"platformVersion": "11.2.6",
-			"deviceName": "iPhone",
-			"platformName": "iOS",
-			"udid": "手机udid",
-			"bundleId": "APP bundleid",
-			"automationName": "XCUITest",
-			"xcodeSigningId": "iPhone Developer",
-			"xcodeOrgId": "10位校验码",
-			"showIOSLog": "true",
-			"preventWDAAttachments": "false"
+		# desired_caps = {
+		# 	"platformVersion": "11.2.6",
+		# 	"deviceName": "iPhone",
+		# 	"platformName": "iOS",
+		# 	"udid": "手机udid",
+		# 	"bundleId": "APP bundleid",
+		# 	"automationName": "XCUITest",
+		# 	"xcodeSigningId": "iPhone Developer",
+		# 	"xcodeOrgId": "10位校验码",
+		# 	"showIOSLog": "true",
+		# 	"preventWDAAttachments": "false"
                         
-		}
+		# }
 		self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-		self.driver.implicitly_wait(30)
+		# self.driver.implicitly_wait(10)
 
 	def login(self):
 		login_page = login.Login()
 		self.click(*login_page.privacy_sure)
 		self.click(*login_page.login_by_passwd_tab_loc)
 		self.send_keys('13520637568', *login_page.phone_number_loc)
-		self.send_keys('autotest', *login_page.password_loc)
+		self.send_keys('123123', *login_page.password_loc)
 		self.click(*login_page.login_btn_loc)
-		self.click_by_text('跳过')
-		self.click_by_text('知道了')
+		# self.click_by_text('跳过')
+		# self.click_by_text('知道了')
 
 
 	def logout(self):
 		my_tabs = my_tab.MyTab()
 		self.click_by_text('我的')
+		self.click_by_partial_text('知道了')
 		self.click_by_partial_text('知道了')
 		self.click(*my_tabs.setting_btn)
 		self.attach_screenshot('设置页面')
