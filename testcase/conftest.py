@@ -1,13 +1,8 @@
 import os
 import time
-import yaml
 import pytest
-import shutil
 import allure
 import functools
-from appium import webdriver
-from public import base
-from public.pages import business_hall, home
 
 test_user_data = [{"user": "18310602997", "psw": "123123"},
                   {"user": "18801398500", "psw": "123123"}]
@@ -50,41 +45,41 @@ test_user_data = [{"user": "18310602997", "psw": "123123"},
 # @pytest.fixture(autouse=True)
 # def set_case():
 #     os.system('adb logcat -c')
-
-@pytest.fixture(autouse=True)
-def setup_case(action, request):
-    action.login()
-
-    def back_tear():
-        action.driver.close_app()
-        action.driver.launch_app()
-
-    request.addfinalizer(back_tear)
-
-
-@pytest.fixture(autouse=True)
-def test_log(request, action):
-    os.system('adb logcat -c')
-
-    def attach_log():
-        logcat = action.driver.get_log('logcat')
-        c = '\n'.join(i['message'] for i in logcat)
-        allure.attach(c, 'appLog', allure.attachment_type.TEXT)
-
-    request.addfinalizer(attach_log)
+#
+# @pytest.fixture(autouse=True)
+# def setup_case(action, request):
+#     action.login()
+#
+#     def back_tear():
+#         action.driver.close_app()
+#         action.driver.launch_app()
+#
+#     request.addfinalizer(back_tear)
 
 
-def pytest_sessionstart(session):
-    session.results = dict()
+# @pytest.fixture(autouse=True)
+# def test_log(request, action):
+#     os.system('adb logcat -c')
+#
+#     def attach_log():
+#         logcat = action.driver.get_log('logcat')
+#         c = '\n'.join(i['message'] for i in logcat)
+#         allure.attach(c, 'appLog', allure.attachment_type.TEXT)
+#
+#     request.addfinalizer(attach_log)
 
 
-@pytest.hookimpl(tryfirst=True, hookwrapper=True)
-def pytest_runtest_makereport(item, call):
-    outcome = yield
-    result = outcome.get_result()
+# def pytest_sessionstart(session):
+#     session.results = dict()
 
-    if result.when == 'call':
-        item.session.results[item] = result
+
+# @pytest.hookimpl(tryfirst=True, hookwrapper=True)
+# def pytest_runtest_makereport(item, call):
+#     outcome = yield
+#     result = outcome.get_result()
+#
+#     if result.when == 'call':
+#         item.session.results[item] = result
 
 
 def retry(retry_times=3, delay=3):

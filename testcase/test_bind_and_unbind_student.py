@@ -15,8 +15,6 @@ class TestBindAndUnbind:
     @allure.story('绑定学员')
     def test_bind_student(self):
         with allure.step('进入学员管理'):
-            self.click_by_text('我的')
-            self.click_by_partial_text('知道了')
             self.click(*self.student_locs.entrance)
             # self.attach_screenshot('学员列表')
         with allure.step('进入绑定'):

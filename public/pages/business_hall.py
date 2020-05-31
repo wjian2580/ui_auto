@@ -1,8 +1,7 @@
-import pytest
 import time
 from selenium.webdriver.common.by import By
 
-from public.base import Action
+from public.pages.base import Action
 
 
 class BusinessHall(Action):

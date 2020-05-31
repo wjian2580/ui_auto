@@ -1,7 +1,16 @@
 import allure
 
-@allure.feature('退出登录')
-class TestLogout():
+from public.pages.app import App
+from public.pages.login import LoginPage
 
-    def test_logout(self, action):
-        action.logout()
+
+@allure.feature('退出登录')
+class TestLogout:
+
+    def setup(self):
+
+        self.setting_page = App.start().login().to_my_home().to_setting_page()
+
+    def test_logout(self):
+        self.setting_page.logout()
+

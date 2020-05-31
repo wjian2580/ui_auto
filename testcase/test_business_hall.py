@@ -1,7 +1,7 @@
 import pytest
 import allure
 from public.pages import business_hall, home
-from public.base import Action
+from public.pages.base import Action
 
 
 # @pytest.fixture(scope='class', autouse=True)
