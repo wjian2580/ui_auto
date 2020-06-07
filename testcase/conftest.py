@@ -3,70 +3,54 @@ import time
 import pytest
 import allure
 import functools
+from public.pages.app import App
+import shutil
 
 test_user_data = [{"user": "18310602997", "psw": "123123"},
                   {"user": "18801398500", "psw": "123123"}]
 
 
-# @pytest.fixture(scope='session')
-# def action():
-#     action = base.Action()
-#     yield action
-#     action.driver.quit()
+@pytest.fixture(scope='session', autouse=True)
+def init():
+    if os.path.exists('data'):
+        shutil.rmtree('data')
+    os.mkdir('data')
+    if os.path.exists('report'):
+        shutil.rmtree('report')
+    os.mkdir('report')
+
+    init = App.start().login()
+    yield init
+    init.driver.quit()
+    init.clear_app()
+    # driver.resetApp();
 
 
-# @pytest.fixture(scope='session', autouse=True)
-# def clean():
-#     if os.path.exists('data'):
-#         shutil.rmtree('data')
-#     os.mkdir('data')
-#     if os.path.exists('report'):
-#         shutil.rmtree('report')
-#     os.mkdir('report')
-
-#
-# @pytest.fixture()
-# def start_business_hall(action):
-#     business_hall_page = business_hall.BusinessHall()
-#     tabs = home.Tabs()
-#     with allure.step('进入我的tab'):
-#         action.click_by_text('我的')
-#         action.attach_screenshot('我的tab')
-#     with allure.step('新手引导-点击知道了'):
-#         action.attach_screenshot('新手引导')
-#         action.click_by_partial_text('知道了')
-#         action.click_by_partial_text('知道了')
-#     with allure.step('点击营业厅icon进入营业厅'):
-#         # action.click(business_hall_page.entrance_loc)
-#         action.click_by_text('营业厅')
-#         action.attach_screenshot('营业厅')
+@pytest.fixture()
+def init_home(init):
+    return init.to_home_page()
 
 
-# @pytest.fixture(autouse=True)
-# def set_case():
-#     os.system('adb logcat -c')
-#
-# @pytest.fixture(autouse=True)
-# def setup_case(action, request):
-#     action.login()
-#
-#     def back_tear():
-#         action.driver.close_app()
-#         action.driver.launch_app()
-#
-#     request.addfinalizer(back_tear)
+@pytest.fixture()
+def init_setting(init):
+    return init.to_my_home().to_setting_page()
 
 
-# @pytest.fixture(autouse=True)
-# def test_log(request, action):
-#     os.system('adb logcat -c')
-#
-#     def attach_log():
-#         logcat = action.driver.get_log('logcat')
-#         c = '\n'.join(i['message'] for i in logcat)
-#         allure.attach(c, 'appLog', allure.attachment_type.TEXT)
-#
-#     request.addfinalizer(attach_log)
+@pytest.fixture(autouse=True)
+def test_log(request, init):
+    os.system('adb logcat -c')
+
+    def attach_log():
+        logcat = init.driver.get_log('logcat')
+        c = '\n'.join(i['message'] for i in logcat)
+        allure.attach(c, 'appLog', allure.attachment_type.TEXT)
+
+    def tear_case():
+        init.driver.close_app()
+        init.driver.launch_app()
+
+    request.addfinalizer(attach_log)
+    request.addfinalizer(tear_case)
 
 
 # def pytest_sessionstart(session):
