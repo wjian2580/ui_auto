@@ -4,14 +4,17 @@ import pytest
 import time
 from selenium.webdriver.common.by import By
 
-class CoreModuleEntrance():
+from public.pages.base import BasePage
+
+
+class CoreModuleEntrance(BasePage):
     practice = (By.ID, "cn.xdf.woxue.student:id/tv_practice")
     material = (By.ID, 'cn.xdf.woxue.student:id/tv_handouts')
     report = (By.ID, 'cn.xdf.woxue.student:id/tv_learning_report')
     error_book = (By.ID, "cn.xdf.woxue.student:id/tv_error_book")
 
 
-class Practice():
+class Practice(BasePage):
     
     # all_practices_tab = (By.ID, "全部")
     # practice_name = (By.ID, "2月27日练习")
@@ -29,7 +32,7 @@ class Practice():
     # action.click_by_text('传照片')
 
 
-class Material():
+class Material(BasePage):
 
     # material_name = (By.ID, "2月21日资料")
     # check_item = (By.ID, 'Bbjjnnkkkk')
@@ -37,7 +40,7 @@ class Material():
     check_item = (By.XPATH, '//android.view.View[@content-desc="Bbjjnnkkkk"]')
 
 
-class Report():
+class Report(BasePage):
     
     # report_name = (By.ID, "19-09-11")
     # report_detail = (By.ID, '答题情况')
@@ -45,7 +48,7 @@ class Report():
     report_detail = (By.XPATH, '//android.view.View[@content-desc="答题情况"]')
 
 
-class ErrorBook():
+class ErrorBook(BasePage):
 
     # book_name = (By.ID, "The rat doesn't love picnics.")
     # audio_item = (By.ID, 'audioPlayer0')

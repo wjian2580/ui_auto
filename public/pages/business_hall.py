@@ -1,11 +1,11 @@
 import time
 from selenium.webdriver.common.by import By
 
-from public.pages.base import Action
+from public.pages.base import BasePage
 
 
-class BusinessHall(Action):
-    _entrance_loc = (By.XPATH, '//*[@text="营业厅"]')
+class BusinessHallPage(BasePage):
+
     _pp_loc = (By.ID, '泡泡小学')
     _youcan_loc = (By.ID, '优能中学')
     _grade_search_loc = (By.XPATH, "//*[contains(@text, '选择年级')]")
@@ -16,15 +16,16 @@ class BusinessHall(Action):
     _search_button_loc = (By.XPATH, "//*[contains(@text, '搜索班级')]")
     _confirm_button_loc = (By.XPATH, "//*[@text='确认']")
 
-    def to_business_hall(self):
-        self.click()
+    def to_pp(self):
+        self.click(*self._pp_loc)
 
-    def classified_search(action, select_items):
-        classifictions = ['请选择年级', '请选择学科', '请选择校区', '请选择季度']
-        swipe_location = [1800, 1700, 2200, 1900]
-        for i in range(4):
-            action.click_by_accessibility_id(classifictions[i])
-            time.sleep(0.5)
-            action.driver.swipe(500, 2200, 500, swipe_location[i])
-            action.click_by_text(select_items[i])
-#           action.click(*self.confirm_button_loc)
+
+#     def classified_search(select_items):
+#         classifictions = ['请选择年级', '请选择学科', '请选择校区', '请选择季度']
+#         swipe_location = [1800, 1700, 2200, 1900]
+#         for i in range(4):
+#             action.click_by_accessibility_id(classifictions[i])
+#             time.sleep(0.5)
+#             action.driver.swipe(500, 2200, 500, swipe_location[i])
+#             action.click_by_text(select_items[i])
+# #           action.click(*self.confirm_button_loc)

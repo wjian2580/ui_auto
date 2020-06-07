@@ -21,7 +21,9 @@ class App:
             "appActivity": ".activity.SplashActivity",
             "newCommandTimeout": 3000,
             "autoGrantPermissions": True,
+            'unicodeKeyboard': True,
             "chromedriverExecutable": "/Users/jian/chromedriver/2.20/chromedriver",
+            'noReset': True,
             "showChromedriverLog": True
         }
 

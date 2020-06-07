@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
-from public.pages.base import Action
+from public.pages.base import BasePage
 
 
-class StudentManagePage(Action):
+class StudentManagePage(BasePage):
 
     add_btn = (By.XPATH, '//android.view.View[@content-desc="添加"]')
     bind_confirm_btn = (By.ID, 'cn.xdf.woxue.student:id/loginBtnBg')

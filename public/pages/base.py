@@ -1,3 +1,4 @@
+import os
 import time
 import allure
 import pytest
@@ -9,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from appium.webdriver.common.touch_action import TouchAction
 
 
-class Action:
+class BasePage:
 
     # _instance = None
 
@@ -79,6 +80,9 @@ class Action:
 
     def sleep(self, sec=2):
         time.sleep(sec)
+
+    def clear_app(self):
+        os.system('adb shell pm clear cn.xdf.woxue.student')
 
     def back(self, times=1):
         for i in range(times):

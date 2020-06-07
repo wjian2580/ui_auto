@@ -1,9 +1,9 @@
 from selenium.webdriver.common.by import By
 
-from public.pages.base import Action
+from public.pages.base import BasePage
 
 
-class SettingPage(Action):
+class SettingPage(BasePage):
     _logout_btn = (By.ID, 'cn.xdf.woxue.student:id/tv_logout')
     _logout_confirm = (By.ID, 'cn.xdf.woxue.student:id/btn_OnClick')
 

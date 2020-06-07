@@ -1,7 +1,9 @@
 from selenium.webdriver.common.by import By
 
+from public.pages.base import BasePage
 
-class Register():
+
+class Register(BasePage):
 
     entrance = (By.ID, 'cn.xdf.woxue.student:id/signupBtn')
     phone_num_box = (By.ID, 'cn.xdf.woxue.student:id/phoneNum')
